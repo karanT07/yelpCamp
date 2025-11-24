@@ -6,7 +6,7 @@ maptilerClient.config.apiKey = process.env.MAPTILER_API_KEY;
 
 module.exports.index = async (req, res) => {
     const campgrounds = await Campground.find({});
-    res.render("campgrounds/index", { campgrounds });
+    res.render("campgrounds/index", { campgrounds, includeMapAssets: true });
 }
 
 module.exports.renderNewForm = (req, res) => {
@@ -42,7 +42,7 @@ module.exports.showCampground = async (req, res) => {
         req.flash("error", "Campground not found");
         return res.redirect("/campgrounds");
     }
-    res.render("campgrounds/show", { campground });
+    res.render("campgrounds/show", { campground, includeMapAssets: true });
 }
 
 module.exports.renderEditForm = async (req, res) => {
